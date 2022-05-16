@@ -1,0 +1,8 @@
+import { ObjectType, Field, ID } from '@nestjs/graphql';
+import { Article } from '../models/article.model';
+
+@ObjectType()
+export class ArticleDeleteOutput {
+  @Field(() => ID)
+  articleId: Article['id'];
+}

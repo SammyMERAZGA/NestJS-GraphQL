@@ -9,6 +9,7 @@ import {
   ArticleUpdateInput,
   ArticleUpdateOutput,
 } from './dto/article-update.dto';
+import { ArticleDeleteOutput } from './dto/article-delete.dto';
 import { Article } from './models/article.model';
 
 @Injectable()
@@ -34,5 +35,15 @@ export class ArticleService {
     article.image = input.image;
     await article.save();
     return { article };
+  }
+
+  async articleDelete(articleId: Article['id']): Promise<ArticleDeleteOutput> {
+    const article = await this.articleRepository.findOneOrFail(articleId);
+    await article.remove();
+    return { articleId };
+  }
+
+  async articleList(): Promise<Article[]> {
+    return this.articleRepository.find();
   }
 }

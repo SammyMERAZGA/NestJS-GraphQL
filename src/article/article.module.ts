@@ -1,3 +1,4 @@
+import { ArticleQueriesResolver } from './resolvers/article.queries.resolver';
 import { Module } from '@nestjs/common';
 import { ArticleService } from './article.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -6,6 +7,6 @@ import { ArticleMutationsResolver } from './resolvers/article.mutations.resolver
 
 @Module({
   imports: [TypeOrmModule.forFeature([Article])],
-  providers: [ArticleService, ArticleMutationsResolver],
+  providers: [ArticleService, ArticleMutationsResolver, ArticleQueriesResolver],
 })
 export class ArticleModule {}
